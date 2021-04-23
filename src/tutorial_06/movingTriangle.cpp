@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+#include <math.h>
 #include <GL/glew.h>
 #include <GL/glut.h>
 #include "ogldev_math_3d.h"
@@ -7,10 +8,10 @@
 using namespace std;
 
 GLuint VBO;
-GLuint gScaleLocation;
+GLuint gWorldLocation;
 
-const char* pVSFileName = "/home/xiaoc/xiaoc/code/opengl/stepByStep/src/tutorial_05/shader/shader.vs";
-const char* pFSFileName = "/home/xiaoc/xiaoc/code/opengl/stepByStep/src/tutorial_05/shader/shader.fs";
+const char* pVSFileName = "/home/xiaoc/xiaoc/code/opengl/stepByStep/src/tutorial_06/shader/shader.vs";
+const char* pFSFileName = "/home/xiaoc/xiaoc/code/opengl/stepByStep/src/tutorial_06/shader/shader.fs";
 
 static void RenderSceneCB() {
     // clear color buffer
@@ -19,7 +20,12 @@ static void RenderSceneCB() {
     // increasing value
     static float Scale = 0.0f;
     Scale += 0.0001f;
-    glUniform1f(gScaleLocation, sinf(Scale));
+    Matrix4f World;
+    World.m[0][0] = 1.0f; World.m[0][1] = 0.0f; World.m[0][2] = 0.0f; World.m[0][3] = sinf(Scale);
+    World.m[1][0] = 0.0f; World.m[1][1] = 1.0f; World.m[1][2] = 0.0f; World.m[1][3] = 0.0f;
+    World.m[2][0] = 0.0f; World.m[2][1] = 0.0f; World.m[2][2] = 1.0f; World.m[2][3] = 0.0f;
+    World.m[3][0] = 0.0f; World.m[3][1] = 0.0f; World.m[3][2] = 0.0f; World.m[3][3] = 1.0f;
+    glUniformMatrix4fv(gWorldLocation, 1, GL_TRUE, &World.m[0][0]);
 
     // vertex attributes
     glEnableVertexAttribArray(0);
@@ -129,9 +135,9 @@ static void CompileShaders() {
 
     /// To get the uniform value location after linking program
     // check uniform value location
-    gScaleLocation = glGetUniformLocation(ShaderProgram, "gScale");
+    gWorldLocation = glGetUniformLocation(ShaderProgram, "gWorld");
     // check error
-    assert(gScaleLocation != 0xFFFFFFFF);
+    assert(gWorldLocation != 0xFFFFFFFF);
 }
 
 
@@ -140,9 +146,9 @@ int main(int argc, char** argv) {
     // initialize glut
     glutInit(&argc, argv);
     glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGBA);
-    glutInitWindowSize(500, 500);
+    glutInitWindowSize(1025, 768);
     glutInitWindowPosition(100, 100);
-    glutCreateWindow("shadeTriangle");
+    glutCreateWindow("movingTriangle");
 
     InitializeGlutCallbacks();
 

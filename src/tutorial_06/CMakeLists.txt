@@ -1,11 +1,11 @@
 
-project(resizeTriangle)
+project(movingTriangle)
 
-add_executable(resizeTriangle 
-    ${PROJECT_SOURCE_DIR}/resizeTriangle.cpp
+add_executable(movingTriangle 
+    ${PROJECT_SOURCE_DIR}/movingTriangle.cpp
     ${PROJECT_SOURCE_DIR}/../../Common/ogldev_util.cpp)
 target_link_libraries(
-    resizeTriangle 
+    movingTriangle 
     ${OPENGL_LIBRARY}
     -lglut
     -lGLEW
