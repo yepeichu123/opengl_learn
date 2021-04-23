@@ -7,13 +7,19 @@
 using namespace std;
 
 GLuint VBO;
+GLuint gScaleLocation;
 
-const char* pVSFileName = "/home/xiaoc/xiaoc/code/opengl/stepByStep/src/tutorial_04/shader/shader.vs";
-const char* pFSFileName = "/home/xiaoc/xiaoc/code/opengl/stepByStep/src/tutorial_04/shader/shader.fs";
+const char* pVSFileName = "/home/xiaoc/xiaoc/code/opengl/stepByStep/src/tutorial_05/shader/shader.vs";
+const char* pFSFileName = "/home/xiaoc/xiaoc/code/opengl/stepByStep/src/tutorial_05/shader/shader.fs";
 
 static void RenderSceneCB() {
     // clear color buffer
     glClear(GL_COLOR_BUFFER_BIT);
+
+    // increasing value
+    static float Scale = 0.0f;
+    Scale += 0.0001f;
+    glUniform1f(gScaleLocation, sinf(Scale));
 
     // vertex attributes
     glEnableVertexAttribArray(0);
@@ -31,6 +37,8 @@ static void RenderSceneCB() {
 
 static void InitializeGlutCallbacks() {
     glutDisplayFunc(RenderSceneCB);
+    // setting rendering function as global free callback
+    glutIdleFunc(RenderSceneCB);
 }
 
 static void CreateVertexBuffer() {
@@ -109,7 +117,21 @@ static void CompileShaders() {
         exit(1);
     }
 
+    glValidateProgram(ShaderProgram);
+    glGetProgramiv(ShaderProgram, GL_VALIDATE_STATUS, &success);
+    if (!success) {
+        glGetProgramInfoLog(ShaderProgram, sizeof(ErrorLog), NULL, ErrorLog);
+        std::cout << "Invalid shader program: " << ErrorLog << std::endl;
+        exit(1);
+    }
+
     glUseProgram(ShaderProgram);
+
+    /// To get the uniform value location after linking program
+    // check uniform value location
+    gScaleLocation = glGetUniformLocation(ShaderProgram, "gScale");
+    // check error
+    assert(gScaleLocation != 0xFFFFFFFF);
 }
 
 
