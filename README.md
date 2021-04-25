@@ -46,7 +46,18 @@ And then you can run the executable files in the root dir:
 4. **tutorial_04**: drawing a triangular with red color.
 5. **tutorial_05**: drawing a red triangular with variable in size by using uniform type.
 6. **tutorial_06**: drawing a moving triangular with red color.
-7. **tutorial_07**: 
+7. **tutorial_07**: drawing a rotating triangular with red color.
+8. **tutorial_08**: drawing a scaling triangular with red color.
+9. **tutorial_09**: 
+
+
+
+### List of docs
+
+1. **fix_math_3d_bug.md**.
+2. **fix_util_bug.md**.
+3. 
+
 
 
 ### Note 
