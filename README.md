@@ -48,7 +48,9 @@ And then you can run the executable files in the root dir:
 6. **tutorial_06**: drawing a moving triangular with red color.
 7. **tutorial_07**: drawing a rotating triangular with red color.
 8. **tutorial_08**: drawing a scaling triangular with red color.
-9. **tutorial_09**: 
+9. **tutorial_09**: drawing a scaling triangular with changing color by interpolation.
+10. **tutorial_10**: drawing a rotating pyramid along y axis. 
+11. **tutorial_11**: 
 
 
 

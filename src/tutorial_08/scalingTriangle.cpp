@@ -10,8 +10,8 @@ using namespace std;
 GLuint VBO;
 GLuint gWorldLocation;
 
-const char* pVSFileName = "/home/xiaoc/xiaoc/code/opengl/stepByStep/src/tutorial_06/shader/shader.vs";
-const char* pFSFileName = "/home/xiaoc/xiaoc/code/opengl/stepByStep/src/tutorial_06/shader/shader.fs";
+const char* pVSFileName = "/home/xiaoc/xiaoc/code/opengl/stepByStep/src/tutorial_08/shader/shader.vs";
+const char* pFSFileName = "/home/xiaoc/xiaoc/code/opengl/stepByStep/src/tutorial_08/shader/shader.fs";
 
 static void RenderSceneCB() {
     // clear color buffer
