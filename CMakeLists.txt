@@ -16,4 +16,5 @@ include_directories(
     ${PROJECT_SOURCE_DIR}/Include
 )
 
+link_directories(${PROJECT_SOURCE_DIR}/Lib)
 add_subdirectory(${PROJECT_SOURCE_DIR}/src)

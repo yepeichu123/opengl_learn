@@ -50,7 +50,8 @@ And then you can run the executable files in the root dir:
 8. **tutorial_08**: drawing a scaling triangular with red color.
 9. **tutorial_09**: drawing a scaling triangular with changing color by interpolation.
 10. **tutorial_10**: drawing a rotating pyramid along y axis. 
-11. **tutorial_11**: 
+11. **tutorial_11**: drawing a transforming pyramid with three types trasnformation including scale and rotation as well as translation.
+12. **tutorial_12**:
 
 
 
@@ -58,7 +59,8 @@ And then you can run the executable files in the root dir:
 
 1. **fix_math_3d_bug.md**.
 2. **fix_util_bug.md**.
-3. 
+3. **fix_pipeline_bug.md**.
+4. 
 
 
 

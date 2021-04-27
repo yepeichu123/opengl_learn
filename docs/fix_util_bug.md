@@ -2,7 +2,7 @@
 
 > Actually, all head function are included in Include folder, but here "ogldev_util.h" has a source file "ogldev_util.cpp". So how can we overcome this problem in tutorial_04?
 
-1. You muse download the lib that auther of tutorials [OpenGL Step by Step](http://ogldev.atspace.co.uk/), and you can download the lib from web: http://ogldev.atspace.co.uk/ogldev-source.zip. In fact, we did it in the last section.
+1. You muse download the lib library writing by auther of tutorials [OpenGL Step by Step](http://ogldev.atspace.co.uk/), and you can download the lib from web: http://ogldev.atspace.co.uk/ogldev-source.zip. In fact, we did it in the last section.
 
 
 2. And then we copy the folder "Common" to the source directory:
