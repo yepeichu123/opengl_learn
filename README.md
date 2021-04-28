@@ -51,7 +51,8 @@ And then you can run the executable files in the root dir:
 9. **tutorial_09**: drawing a scaling triangular with changing color by interpolation.
 10. **tutorial_10**: drawing a rotating pyramid along y axis. 
 11. **tutorial_11**: drawing a transforming pyramid with three types trasnformation including scale and rotation as well as translation.
-12. **tutorial_12**:
+12. **tutorial_12**: drawing a perspective pyramid with rotation along y axis.
+13. **tutorial_13**: 
 
 
 
