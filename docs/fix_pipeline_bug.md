@@ -62,6 +62,12 @@ Makefile:86: recipe for target 'all' failed
 make: *** [all] Error 2
 
 8. To fix these bugs, we find that "ogldev_pipeline.cpp" depends on the source file ""math_3d.cpp". Therefore, we tried to include the source file "math_3d.cpp" in our project and compiled. Finally, we successfully overcome this problem:
+>  ADD_EXECUTABLE(shadeTriangle 
+    \${PROJECT_SOURCE_DIR}/shadeTriangle.cpp
+    \${PROJECT_SOURCE_DIR}/../../Common/ogldev_pipeline.cpp
+    \${PROJECT_SOURCE_DIR}/../../Common/math_3d.cpp
+    \${PROJECT_SOURCE_DIR}/../../Common/ogldev_util.cpp)
+
 > ...
 [ 93%] Built target indexDrawing
 [ 96%] Building CXX object src/tutorial_11/CMakeFiles/transformPyramid.dir/__/__/Common/pipeline.cpp.o
