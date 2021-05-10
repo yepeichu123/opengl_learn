@@ -14,6 +14,7 @@ include_directories(
     ${GLUT_INCLUDE_DIR}
     ${GLEW_INCLUDE_DIR}
     ${PROJECT_SOURCE_DIR}/Include
+    ${PROJECT_SOURCE_DIR}/Include/ImageMagick-6
 )
 
 link_directories(${PROJECT_SOURCE_DIR}/Lib)
