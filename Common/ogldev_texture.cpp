@@ -37,11 +37,18 @@ bool Texture::Load()
         return false;
     }
 
+    // 产生指定纹理对象并绑定到指定对象中
     glGenTextures(1, &m_textureObj);
     glBindTexture(m_textureTarget, m_textureObj);
+
+    // 加载纹理数据到纹理对象中
     glTexImage2D(m_textureTarget, 0, GL_RGBA, m_image.columns(), m_image.rows(), 0, GL_RGBA, GL_UNSIGNED_BYTE, m_blob.data());
+
+    // 对于过远/过近的情况,采用线性过滤插值
     glTexParameterf(m_textureTarget, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
     glTexParameterf(m_textureTarget, GL_TEXTURE_MAG_FILTER, GL_LINEAR);    
+
+    // 将纹理目标绑定到ID为0这个句柄中
     glBindTexture(m_textureTarget, 0);
     
     return true;
@@ -49,6 +56,7 @@ bool Texture::Load()
 
 void Texture::Bind(GLenum TextureUnit)
 {
+    // 激活纹理单元并绑定纹理对象
     glActiveTexture(TextureUnit);
     glBindTexture(m_textureTarget, m_textureObj);
 }

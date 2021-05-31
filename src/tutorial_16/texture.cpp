@@ -39,7 +39,7 @@ Texture* pTexture = NULL;
 
 const char* pVSFileName = "/home/xiaoc/xiaoc/code/opengl/stepByStep/src/tutorial_16/shader/shader.vs";
 const char* pFSFileName = "/home/xiaoc/xiaoc/code/opengl/stepByStep/src/tutorial_16/shader/shader.fs";
-string textureImageFile = "/home/xiaoc/xiaoc/code/opengl/stepByStep/src/tutorial_16/texture/test.png";
+string textureImageFile = "/home/xiaoc/xiaoc/code/opengl/stepByStep/src/tutorial_16/data/test.png";
 
 static void RenderSceneCB() {
     // clear color buffer

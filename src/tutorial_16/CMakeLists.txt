@@ -17,4 +17,5 @@ target_link_libraries(
     -lglut
     -lGLEW 
     AntTweakBar
+    Magick++-6.Q16
 )
