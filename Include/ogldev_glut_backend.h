@@ -22,11 +22,13 @@
 #include "ogldev_types.h"
 #include "ogldev_callbacks.h"
 
+// GLUT 初始化
 void GLUTBackendInit(int argc, char** argv, bool WithDepth, bool WithStencil);
 
-
+// GLUT 创建指定参数的窗口
 bool GLUTBackendCreateWindow(uint Width, uint Height, bool isFullScreen, const char* pTitle);
 
+// 调用指定回调函数的主循环函数
 void GLUTBackendRun(ICallbacks* pCallbacks);
 
 void GLUTBackendSwapBuffers();

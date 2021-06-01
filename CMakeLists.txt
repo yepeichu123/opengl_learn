@@ -4,6 +4,7 @@ project(LearnOpenGLStepByStep)
 set(CMAKE_CXX_FLAGS "-std=c++11")
 set(CMAKE_BUILD_TYPE "Release")
 set(EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/bin)
+set(LIBRARY_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/Lib)
 
 find_package(OpenGL REQUIRED)
 find_package(GLUT REQUIRED)

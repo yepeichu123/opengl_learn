@@ -55,7 +55,8 @@ And then you can run the executable files in the root dir:
 13. **tutorial_13**: drawing a perspective pyramid with fixed camera position and view.
 14. **tutorial_14**: drawing a perspective pyramid which can be controled by keyboard.
 15. **tutorial_15**: drawing a perspective pyramid which can be controled by mouse.
-16. **tutorial_16**: 
+16. **tutorial_16**: drawing a perspective pyramid with texture.
+17. **tutorial_17**"
 
 
 
@@ -66,7 +67,8 @@ And then you can run the executable files in the root dir:
 3. **fix_pipeline_bug.md**.
 4. **fix_cameraModel_bug.md**.
 5. **fix_newCameraObject_bug.md**.
-6. 
+6. **fix_imageMagick_bug.md**.
+7. 
 
 
 

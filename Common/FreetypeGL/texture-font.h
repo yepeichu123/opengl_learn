@@ -35,6 +35,7 @@
 #define __TEXTURE_FONT_H__
 
 #include <ft2build.h>
+// #include <freetype2/ft2build.h>
 #include FT_FREETYPE_H
 #include "vector.h"
 #include "texture-atlas.h"
