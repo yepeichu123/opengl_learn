@@ -56,7 +56,12 @@ And then you can run the executable files in the root dir:
 14. **tutorial_14**: drawing a perspective pyramid which can be controled by keyboard.
 15. **tutorial_15**: drawing a perspective pyramid which can be controled by mouse.
 16. **tutorial_16**: drawing a perspective pyramid with texture.
-17. **tutorial_17**"
+17. **tutorial_17**: drawing a perspective pyramid with texture and directional light.
+18. **tutorial_18**: drawing a perspective pyramid with texture and directional light as well as diffuse light.
+19. **tutorial_19**: drawing a perspective pyramid with directional light and diffuse light as well as specular light.
+20. **tutorial_20**: drawing a texture image with two point lights.
+21. **tutorial_21**: drawing a texture image with two point lights and two spot lights.
+22. 
 
 
 
@@ -76,7 +81,7 @@ And then you can run the executable files in the root dir:
 
 Pay attention to the shader file path, please change the path to your own:
 > 
-> const char* pVSFileName = "/home/xiaoc/xiaoc/code/opengl/stepByStep/src/tutorial_06/shader/shader.vs";
+> const char* pVSFileName = "/home/xiaoc/xiaoc/code/opengl/stepByStep/src/tutorial_**x**/shader/shader.vs";
 > 
-> const char* pFSFileName = "/home/xiaoc/xiaoc/code/opengl/stepByStep/src/tutorial_06/shader/shader.fs";
+> const char* pFSFileName = "/home/xiaoc/xiaoc/code/opengl/stepByStep/src/tutorial_**x**/shader/shader.fs";
 > 

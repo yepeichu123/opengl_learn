@@ -1,5 +1,5 @@
 
-project(diffuseLight)
+project(pointLight)
 
 include_directories(
     # /usr/include/freetype2
@@ -24,8 +24,8 @@ include_directories(
 #     -lGLEW
 # )
 
-add_executable(diffuseLight
-    ${PROJECT_SOURCE_DIR}/src/diffuseLight.cpp
+add_executable(pointLight
+    ${PROJECT_SOURCE_DIR}/src/pointLight.cpp
     ${PROJECT_SOURCE_DIR}/src/lighting_technique.cpp
     ${PROJECT_SOURCE_DIR}/../../Common/ogldev_util.cpp
     ${PROJECT_SOURCE_DIR}/../../Common/math_3d.cpp
@@ -39,7 +39,7 @@ add_executable(diffuseLight
     ${PROJECT_SOURCE_DIR}/../../Common/ogldev_basic_lighting.cpp)
     
 target_link_libraries(
-    diffuseLight 
+    pointLight 
     ${OPENGL_LIBRARY}
     -lglut
     -lGLEW 

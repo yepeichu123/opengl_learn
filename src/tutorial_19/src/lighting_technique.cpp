@@ -31,6 +31,10 @@ bool LightingTechnique::Init()
     m_dirLightLocation.AmbientIntensity = GetUniformLocation("gDirectionalLight.AmbientIntensity");
     m_dirLightLocation.Direction = GetUniformLocation("gDirectionalLight.Direction");
     m_dirLightLocation.DiffuseIntensity = GetUniformLocation("gDirectionalLight.DiffuseIntensity");
+    // 镜面反射相关参数
+    m_eyeWorldPosLocation = GetUniformLocation("gEyeWorldPos");
+    m_matSpecularIntensityLocation = GetUniformLocation("gMatSpecularIntensity");
+    m_matSpecularPowerLocation = GetUniformLocation("gSpecularPower");
 
     // 验证数据有效性
     if (m_dirLightLocation.Color == 0xFFFFFFFF ||
@@ -38,7 +42,10 @@ bool LightingTechnique::Init()
         m_dirLightLocation.Direction == 0xFFFFFFFF ||
         m_dirLightLocation.DiffuseIntensity == 0xFFFFFFFF ||
         m_WVPLocation == 0xFFFFFFFF ||
-        m_samplerLocation == 0xFFFFFFFF)
+        m_samplerLocation == 0xFFFFFFFF ||
+        m_eyeWorldPosLocation == 0xFFFFFFFF ||
+        m_matSpecularIntensityLocation == 0xFFFFFFFF ||
+        m_matSpecularPowerLocation == 0xFFFFFFFF)
     {
         return false;
     }
@@ -73,6 +80,10 @@ bool LightingTechnique::Init(const char* pvertexFile, const char* pfragFile)
     m_dirLightLocation.AmbientIntensity = GetUniformLocation("gDirectionalLight.AmbientIntensity");
     m_dirLightLocation.Direction = GetUniformLocation("gDirectionalLight.Direction");
     m_dirLightLocation.DiffuseIntensity = GetUniformLocation("gDirectionalLight.DiffuseIntensity");
+    // 镜面反射相关参数
+    m_eyeWorldPosLocation = GetUniformLocation("gEyeWorldPos");
+    m_matSpecularIntensityLocation = GetUniformLocation("gMatSpecularIntensity");
+    m_matSpecularPowerLocation = GetUniformLocation("gSpecularPower");
 
     // 验证数据有效性
     if (m_dirLightLocation.Color == 0xFFFFFFFF ||
@@ -80,7 +91,10 @@ bool LightingTechnique::Init(const char* pvertexFile, const char* pfragFile)
         m_dirLightLocation.Direction == 0xFFFFFFFF ||
         m_dirLightLocation.DiffuseIntensity == 0xFFFFFFFF ||
         m_WVPLocation == 0xFFFFFFFF ||
-        m_samplerLocation == 0xFFFFFFFF)
+        m_samplerLocation == 0xFFFFFFFF ||
+        m_eyeWorldPosLocation == 0xFFFFFFFF ||
+        m_matSpecularIntensityLocation == 0xFFFFFFFF ||
+        m_matSpecularPowerLocation == 0xFFFFFFFF)
     {
         return false;
     }
@@ -117,4 +131,19 @@ void LightingTechnique::SetDirectionalLight(const DirectionalLight& Light)
     Direction.Normalize();
     glUniform3f(m_dirLightLocation.Direction, Direction.x, Direction.y, Direction.z);
     glUniform1f(m_dirLightLocation.DiffuseIntensity, Light.DiffuseIntensity);
+}
+
+void LightingTechnique::SetEyeWorldPos(const Vector3f& EyeWorldPos)
+{
+    glUniform3f(m_eyeWorldPosLocation, EyeWorldPos.x, EyeWorldPos.y, EyeWorldPos.z);
+}
+
+void LightingTechnique::SetMatSpecularIntensity(float Intensity)
+{
+    glUniform1f(m_matSpecularIntensityLocation, Intensity);
+}
+
+void LightingTechnique::SetMatSpecularPower(float Power)
+{
+    glUniform1f(m_matSpecularPowerLocation, Power);
 }
