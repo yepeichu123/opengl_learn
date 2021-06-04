@@ -19,6 +19,8 @@
 
 
 #include "mesh.h"
+#include <iostream>
+using namespace std;
 
 Mesh::MeshEntry::MeshEntry()
 {
@@ -102,6 +104,8 @@ bool Mesh::InitFromScene(const aiScene* pScene, const std::string& Filename)
 {  
     m_Entries.resize(pScene->mNumMeshes);
     m_Textures.resize(pScene->mNumMaterials);
+    cout << "Entries size = " << m_Entries.size() << endl;
+    cout << "Texture size = " << m_Textures.size() << endl;
 
     // Initialize the meshes in the scene one by one
     for (unsigned int i = 0 ; i < m_Entries.size() ; i++) {
@@ -134,6 +138,8 @@ void Mesh::InitMesh(unsigned int Index, const aiMesh* paiMesh)
 
         Vertices.push_back(v);
     }
+
+    cout << "Mesh_" << Index << " has " << Vertices.size() << " vertives." << endl;
 
     // 保存绘制三角形的索引
     for (unsigned int i = 0 ; i < paiMesh->mNumFaces ; i++) {

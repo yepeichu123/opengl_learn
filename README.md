@@ -61,7 +61,9 @@ And then you can run the executable files in the root dir:
 19. **tutorial_19**: drawing a perspective pyramid with directional light and diffuse light as well as specular light.
 20. **tutorial_20**: drawing a texture image with two point lights.
 21. **tutorial_21**: drawing a texture image with two point lights and two spot lights.
-22. 
+22. **tutorial_22**: Loading a 3D model using Assimp Library.
+23. **tutorial_23**: constructing a shadow map from a 3d model.
+24. 
 
 
 
@@ -73,7 +75,8 @@ And then you can run the executable files in the root dir:
 4. **fix_cameraModel_bug.md**.
 5. **fix_newCameraObject_bug.md**.
 6. **fix_imageMagick_bug.md**.
-7. 
+7. **fix_assimp_bug.md**.
+8. 
 
 
 

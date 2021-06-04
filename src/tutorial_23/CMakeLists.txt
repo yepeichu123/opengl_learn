@@ -7,25 +7,6 @@ include_directories(
     ${PROJECT_SOURCE_DIR}/../../Include/assimp/Compiler
 )
 
-add_library(Assimp SHARED
-    ${PROJECT_SOURCE_DIR}/../../color4.inl)
-# add_library(FreetypeGL SHARED
-#     ${PROJECT_SOURCE_DIR}/../../Common/FreetypeGL/freetypeGL.cpp
-#     ${PROJECT_SOURCE_DIR}/../../Common/FreetypeGL/font_shader.cpp
-#     ${PROJECT_SOURCE_DIR}/../../Common/FreetypeGL/font-manager.c
-#     ${PROJECT_SOURCE_DIR}/../../Common/FreetypeGL/texture-atlas.c
-#     ${PROJECT_SOURCE_DIR}/../../Common/FreetypeGL/texture-font.c
-#     ${PROJECT_SOURCE_DIR}/../../Common/FreetypeGL/texture-glyph.c
-#     ${PROJECT_SOURCE_DIR}/../../Common/FreetypeGL/vector.c
-#     ${PROJECT_SOURCE_DIR}/../../Common/FreetypeGL/vertex-buffer.c)
-
-# target_link_libraries(FreetypeGL 
-#     freetype
-#     ${OPENGL_LIBRARY}
-#     -lglut
-#     -lGLEW
-# )
-
 add_executable(shadowMap_1
     ${PROJECT_SOURCE_DIR}/src/shadowMap_1.cpp
     ${PROJECT_SOURCE_DIR}/src/mesh.cpp
@@ -36,7 +17,6 @@ add_executable(shadowMap_1
     ${PROJECT_SOURCE_DIR}/../../Common/pipeline.cpp
     ${PROJECT_SOURCE_DIR}/../../Common/camera.cpp
     ${PROJECT_SOURCE_DIR}/../../Common/ogldev_atb.cpp
-    # ${PROJECT_SOURCE_DIR}/../../Common/ogldev_app.cpp
     ${PROJECT_SOURCE_DIR}/../../Common/glut_backend.cpp
     ${PROJECT_SOURCE_DIR}/../../Common/ogldev_texture.cpp
     ${PROJECT_SOURCE_DIR}/../../Common/technique.cpp
@@ -49,5 +29,5 @@ target_link_libraries(
     -lGLEW 
     AntTweakBar
     Magick++-6.Q16
-    # FreetypeGL
+    assimp
 )

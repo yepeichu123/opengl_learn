@@ -177,7 +177,8 @@ void GLUTBackendInit(int argc, char** argv, bool WithDepth, bool WithStencil)
 
     glutInit(&argc, argv);
 	
-    uint DisplayMode = GLUT_DOUBLE|GLUT_RGBA;
+    // uint DisplayMode = GLUT_DOUBLE|GLUT_RGBA;
+    uint DisplayMode = GLUT_DOUBLE|GLUT_RGBA|GLUT_DEPTH;
 
     if (WithDepth) {
         DisplayMode |= GLUT_DEPTH;

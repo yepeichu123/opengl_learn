@@ -24,31 +24,12 @@ const char* pFSFileName     = "/home/xiaoc/xiaoc/code/opengl/stepByStep/src/tuto
 const char* pTextureModel   = "/home/xiaoc/xiaoc/code/opengl/stepByStep/src/tutorial_23/model/quad.obj";
 const char* pTextureFile    = "/home/xiaoc/xiaoc/code/opengl/stepByStep/src/tutorial_23/model/phoenix_ugv.md2";
 
-static const float FieldDepth = 20.0f;
-static const float FieldWidth = 10.0f;
 
-struct Vertex
-{
-    Vector3f m_pos;
-    Vector2f m_tex;
-    Vector3f m_normal;
-
-    Vertex() {}
-
-    Vertex(const Vector3f& pos, const Vector2f& tex, const Vector3f& normal)
-    {
-        m_pos    = pos;
-        m_tex    = tex;
-        m_normal = normal;
-    }
-};
-
-
-class diffuseLight : public ICallbacks//, public OgldevApp
+class shadowMap : public ICallbacks//, public OgldevApp
 {
 public:
     // 初始化各项参数,包括光照等参数,观测窗口等
-    diffuseLight()
+    shadowMap()
     {
         m_pShadowMapTech = NULL;
         m_pGameCamera = NULL;
@@ -80,7 +61,7 @@ public:
     }
 
     // 析构三项对象
-    ~diffuseLight()
+    ~shadowMap()
     {
         SAFE_DELETE(m_pShadowMapTech);
         SAFE_DELETE(m_pGameCamera);
@@ -99,21 +80,20 @@ public:
         m_pShadowMapTech = new ShadowMapTechnique();
 
         // 创建着色器并关联uniform变量
-        if (!m_pShadowMapTech->Init()) {
+        if (!m_pShadowMapTech->Init(pVSFileName, pFSFileName)) {
             printf("Error initializing the shadow map technique\n");
             return false;
         }        
         
         m_pShadowMapTech->Enable();
        
+       
         m_pQuad = new Mesh();
-        
 		if (!m_pQuad->LoadMesh(pTextureModel)) {
             return false;
         }
 
         m_pMesh = new Mesh();
-
 		return m_pMesh->LoadMesh(pTextureFile);
     }
 
@@ -217,14 +197,14 @@ private:
 
 int main(int argc, char** argv)
 {
-//    Magick::InitializeMagick(*argv);
-    GLUTBackendInit(argc, argv, false, false);
+    // 第三个参数必须设置为true,表示开启深度测试，否则不会出现阴影
+    GLUTBackendInit(argc, argv, true, false);
 
     if (!GLUTBackendCreateWindow(WINDOW_WIDTH, WINDOW_HEIGHT, false, "shadowMap_1")) {
         return 1;
     }
 
-    diffuseLight* pApp = new diffuseLight();
+    shadowMap* pApp = new shadowMap();
 
     if (!pApp->Init()) {
         return 1;

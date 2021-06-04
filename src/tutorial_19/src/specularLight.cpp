@@ -37,11 +37,11 @@ struct Vertex
 };
 
 
-class diffuseLight : public ICallbacks//, public OgldevApp
+class specularLight : public ICallbacks//, public OgldevApp
 {
 public:
     // 初始化各项参数,包括光照等参数,观测窗口等
-    diffuseLight()
+    specularLight()
     {
         m_pGameCamera = NULL;
         m_pTexture = NULL;
@@ -61,7 +61,7 @@ public:
     }
 
     // 析构三项对象
-    ~diffuseLight()
+    ~specularLight()
     {
         delete m_pEffect;
         delete m_pGameCamera;
@@ -288,7 +288,7 @@ int main(int argc, char** argv)
         return 1;
     }
 
-    diffuseLight* pApp = new diffuseLight();
+    specularLight* pApp = new specularLight();
 
     if (!pApp->Init()) {
         return 1;
