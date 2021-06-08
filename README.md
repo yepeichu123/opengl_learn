@@ -14,6 +14,11 @@
 ### Dependencies
 1. OpenGL
 2. GLUT
+3. AntTweakBar
+4. ImageMagick-6
+5. freetype
+6. assimp
+7. 
 
 
 
@@ -63,7 +68,8 @@ And then you can run the executable files in the root dir:
 21. **tutorial_21**: drawing a texture image with two point lights and two spot lights.
 22. **tutorial_22**: Loading a 3D model using Assimp Library.
 23. **tutorial_23**: constructing a shadow map from a 3d model.
-24. 
+24. **tutorial_24**: constructing a shadow map from a 3d model and display with 3d model.
+25. 
 
 
 

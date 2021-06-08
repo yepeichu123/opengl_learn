@@ -19,6 +19,8 @@
 
 
 #include "mesh.h"
+#include <iostream>
+using namespace std;
 
 Mesh::MeshEntry::MeshEntry()
 {
@@ -41,7 +43,6 @@ Mesh::MeshEntry::~MeshEntry()
     }
 }
 
-// 初始化缓冲器
 void Mesh::MeshEntry::Init(const std::vector<Vertex>& Vertices,
                           const std::vector<unsigned int>& Indices)
 {
@@ -82,9 +83,9 @@ bool Mesh::LoadMesh(const std::string& Filename)
     // Release the previously loaded mesh (if it exists)
     Clear();
     
-    // 使用importer对象读取模型
     bool Ret = false;
     Assimp::Importer Importer;
+
     const aiScene* pScene = Importer.ReadFile(Filename.c_str(), ASSIMP_LOAD_FLAGS);
     
     // 加载成功则初始化纹理模型
@@ -101,11 +102,11 @@ bool Mesh::LoadMesh(const std::string& Filename)
 // 利用读取模型的信息初始化顶点等信息
 bool Mesh::InitFromScene(const aiScene* pScene, const std::string& Filename)
 {  
-    // 根据读取的模型初始化空间
     m_Entries.resize(pScene->mNumMeshes);
     m_Textures.resize(pScene->mNumMaterials);
+    cout << "Entries size = " << m_Entries.size() << endl;
+    cout << "Texture size = " << m_Textures.size() << endl;
 
-    // 逐个初始化网格
     // Initialize the meshes in the scene one by one
     for (unsigned int i = 0 ; i < m_Entries.size() ; i++) {
         const aiMesh* paiMesh = pScene->mMeshes[i];
@@ -137,6 +138,8 @@ void Mesh::InitMesh(unsigned int Index, const aiMesh* paiMesh)
 
         Vertices.push_back(v);
     }
+
+    cout << "Mesh_" << Index << " has " << Vertices.size() << " vertives." << endl;
 
     // 保存绘制三角形的索引
     for (unsigned int i = 0 ; i < paiMesh->mNumFaces ; i++) {
@@ -198,7 +201,6 @@ bool Mesh::InitMaterials(const aiScene* pScene, const std::string& Filename)
     return Ret;
 }
 
-// 启动纹理渲染
 void Mesh::Render()
 {
     // 位置
@@ -211,12 +213,10 @@ void Mesh::Render()
     // 按照指定索引逐个绘制纹理
     for (unsigned int i = 0 ; i < m_Entries.size() ; i++) {
         glBindBuffer(GL_ARRAY_BUFFER, m_Entries[i].VB);
-        // 设置顶点属性
         glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), 0);
         glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, sizeof(Vertex), (const GLvoid*)12);
         glVertexAttribPointer(2, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (const GLvoid*)20);
 
-        // 将索引信息绑定到对应对象中
         glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_Entries[i].IB);
 
         const unsigned int MaterialIndex = m_Entries[i].MaterialIndex;
@@ -225,7 +225,6 @@ void Mesh::Render()
             m_Textures[MaterialIndex]->Bind(GL_TEXTURE0);
         }
 
-        // 按指定的索引绘制图像
         glDrawElements(GL_TRIANGLES, m_Entries[i].NumIndices, GL_UNSIGNED_INT, 0);
     }
 

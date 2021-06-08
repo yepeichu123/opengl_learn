@@ -158,7 +158,7 @@ static void MouseCB(int Button, int State, int x, int y)
     s_pCallbacks->MouseCB(OgldevMouse, OgldevKeyState, x, y);
 }
 
-
+// 主回调函数
 static void InitCallbacks()
 {
     glutDisplayFunc(RenderSceneCB);
@@ -225,21 +225,26 @@ void GLUTBackendRun(ICallbacks* pCallbacks)
         return;
     }
 
+    // 屏幕清除后用指定颜色填充窗口
     glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
+
+    // 启动隐藏面不渲染
     glFrontFace(GL_CW);
     glCullFace(GL_BACK);
     glEnable(GL_CULL_FACE);
 
+    // 确认是否启动深度测试
     if (sWithDepth) {
         glEnable(GL_DEPTH_TEST);
     }
 
+    // 设置回调函数并启动主循环
     s_pCallbacks = pCallbacks;
     InitCallbacks();
     glutMainLoop();
 }
 
-
+// 交换缓冲区,刷新屏幕
 void GLUTBackendSwapBuffers()
 {
     glutSwapBuffers();

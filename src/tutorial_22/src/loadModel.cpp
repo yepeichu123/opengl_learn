@@ -42,7 +42,7 @@ public:
         m_directionalLight.DiffuseIntensity = 0.01f;
         // 光源方向
         m_directionalLight.Direction = Vector3f(1.0f, -1.0, 0.0);
-
+        // 设置视锥参数
         m_persProjInfo.FOV = 60.0f;
         m_persProjInfo.Height = WINDOW_HEIGHT;
         m_persProjInfo.Width = WINDOW_WIDTH;
@@ -60,25 +60,34 @@ public:
 
     bool Init()
     {
+        // 设置相机摆放参数
         Vector3f Pos(3.0f, 7.0f, -10.0f);
         Vector3f Target(0.0f, -0.2f, 1.0f);
         Vector3f Up(0.0, 1.0f, 0.0f);
 
+        // 创建相机对象
         m_pGameCamera = new Camera(WINDOW_WIDTH, WINDOW_HEIGHT, Pos, Target, Up);
       
+        // 创建光照对象
         m_pEffect = new BasicLightingTechnique();
 
+        // 初始化包括添加,编译,链接着色器
+        // 关联uniform变量
         if (!m_pEffect->Init(pVSFileName, pFSFileName)) {
             printf("Error initializing the lighting technique\n");
             return false;
         }
 
+        // 启动渲染程序
         m_pEffect->Enable();
 
+        // 设置纹理单元
         m_pEffect->SetColorTextureUnit(0);
 
+        // 创建mesh对象
         m_pMesh = new Mesh();
 
+        // 加载指定路径的3D模型
         return m_pMesh->LoadMesh(pTextureFile);
     }
 
@@ -92,12 +101,13 @@ public:
 
     virtual void RenderSceneCB()
     {
-        m_scale += 0.01f;
-
         m_pGameCamera->OnRender();
 
+        // 清空深度/颜色缓冲区
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
+        // 设置点光源的参数
+        m_scale += 0.01f;
         PointLight pl[2];
         pl[0].DiffuseIntensity = 0.25f;
         pl[0].Color = Vector3f(1.0f, 0.5f, 0.0f);
@@ -109,6 +119,7 @@ public:
         pl[1].Attenuation.Linear = 0.1f;
         m_pEffect->SetPointLights(2, pl);
 
+        // 设置聚光灯的参数
         SpotLight sl;
         sl.DiffuseIntensity = 0.9f;
         sl.Color = Vector3f(0.0f, 1.0f, 1.0f);
@@ -116,15 +127,18 @@ public:
         sl.Direction = m_pGameCamera->GetTarget();
         sl.Attenuation.Linear = 0.1f;
         sl.Cutoff = 10.0f;
-
         m_pEffect->SetSpotLights(1, &sl);
 
+        // 设置相机姿态和投影矩阵
         Pipeline p;
         p.Scale(0.1f, 0.1f, 0.1f);
         p.Rotate(0.0f, m_scale, 0.0f);
         p.WorldPos(0.0f, 0.0f, 10.0f);
         p.SetCamera(m_pGameCamera->GetPos(), m_pGameCamera->GetTarget(), m_pGameCamera->GetUp());
         p.SetPerspectiveProj(m_persProjInfo);
+
+        // 设置光源位置和方向
+        // 设置观测位置
         m_pEffect->SetWVP(p.GetWVPTrans());
         m_pEffect->SetWorldMatrix(p.GetWorldTrans());
         m_pEffect->SetDirectionalLight(m_directionalLight);
@@ -132,8 +146,10 @@ public:
         m_pEffect->SetMatSpecularIntensity(0.0f);
         m_pEffect->SetMatSpecularPower(0);
 
+        // 渲染网格
         m_pMesh->Render();
 
+        // 刷新缓冲区
         glutSwapBuffers();
     }
 
@@ -181,7 +197,7 @@ private:
 
 int main(int argc, char** argv)
 {
-
+    // 必须启动深度测试,即第三个参数
     // open GL_DEPTH_TEST
     GLUTBackendInit(argc, argv, true, false);
 
