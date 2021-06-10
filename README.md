@@ -69,7 +69,8 @@ And then you can run the executable files in the root dir:
 22. **tutorial_22**: Loading a 3D model using Assimp Library.
 23. **tutorial_23**: constructing a shadow map from a 3d model.
 24. **tutorial_24**: constructing a shadow map from a 3d model and display with 3d model.
-25. 
+25. **tutorial_25**: drawing a sky box.
+26. 
 
 
 
